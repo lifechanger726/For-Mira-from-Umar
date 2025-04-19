@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1 Achay Dil Sachai !</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Kalam:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="./favorite.png">
+
+    <style>
+        .star {
+
+            position: absolute;
+
+            width: 5px;
+
+            height: 5px;
+
+            background-color: white;
+
+            border-radius: 50%;
+
+            animation: starDrift var(--animation-duration) linear infinite;
+
+        }
+
+
+
+        .heart {
+
+            position: absolute;
+
+            width: 30px;
+
+            height: 30px;
+
+            background-image: url('heart.png');
+
+            background-size: cover;
+
+            animation: heartBurst 3s forwards;
+
+        }
+
+
+
+        @keyframes starDrift {
+
+            0% {
+
+                transform: translate(var(--drift-x), var(--drift-y));
+
+            }
+
+
+
+            100% {
+
+                transform: translate(var(--drift-x), var(--drift-y));
+
+            }
+
+        }
+
+
+
+        @keyframes heartBurst {
+
+            0% {
+
+                opacity: 1;
+
+                transform: scale(1);
+
+            }
+
+
+
+            100% {
+
+                opacity: 0;
+
+                transform: scale(2);
+
+            }
+
+        }
+
+
+
+        .calming-mode {
+
+            background-color: #f0f8ff;
+
+        }
+
+
+
+        .cloud {
+
+            position: absolute;
+
+            width: 100px;
+
+            height: 60px;
+
+            background-color: white;
+
+            border-radius: 50%;
+
+            opacity: 0.6;
+
+            animation: cloudMove 10s linear infinite;
+
+        }
+
+
+
+        @keyframes cloudMove {
+
+            0% {
+
+                left: -100px;
+
+            }
+
+
+
+            100% {
+
+                left: 100vw;
+
+            }
+
+        }
+
+
+
+        :root {
+
+            --primary: #ff4060;
+
+            --secondary: #ffb3a7;
+
+            --accent: #c71585;
+
+            --loving-gradient: linear-gradient(135deg, #ff4060, #ffb3a7, #e6b3cc);
+
+            --calming-bg: linear-gradient(135deg, #b0c4de, #e6e6fa, #f0f8ff);
+
+        }
+
+
+
+        body {
+
+            font-family: 'Poppins', sans-serif;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            color: #333;
+
+            text-align: center;
+
+            transition: background 1s ease, color 1s ease;
+
+            position: relative;
+
+            background: none;
+
+        }
+
+
+
+        .background {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            z-index: 0;
+
+            background: var(--loving-gradient);
+
+            animation: gradientShift 12s ease-in-out infinite;
+
+            overflow: hidden;
+
+        }
+
+
+
+        @keyframes gradientShift {
+
+            0% {
+
+                background-position: 0% 50%;
+
+            }
+
+
+
+            50% {
+
+                background-position: 100% 50%;
+
+            }
+
+
+
+            100% {
+
+                background-position: 0% 50%;
+
+            }
+
+        }
+
+
+
+        .background::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+
+            opacity: 0.4;
+
+            animation: sparkle 18s linear infinite;
+
+            z-index: 1;
+
+        }
+
+
+
+        @keyframes sparkle {
+
+            0% {
+
+                transform: translateY(0);
+
+                opacity: 0.4;
+
+            }
+
+
+
+            50% {
+
+                opacity: 0.2;
+
+            }
+
+
+
+            100% {
+
+                transform: translateY(-40px);
+
+                opacity: 0.4;
+
+            }
+
+        }
+
+
+
+        .background::after {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="200" height="200" filter="url(%23noise)" opacity="0.05"/%3E%3C/svg%3E');
+
+            opacity: 0.08;
+
+            z-index: 1;
+
+        }
+
+
+
+        .calming-mode .background {
+
+            background: var(--calming-bg);
+
+            animation: gradientShift 16s ease-in-out infinite;
+
+        }
+
+
+
+        .calming-mode .background::before {
+
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+
+        }
+
+
+
+        .calming-mode .star {
+
+            background: radial-gradient(circle, #fff 20%, #f0f8ff 60%);
+
+        }
+
+
+
+        .star-container {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            pointer-events: none;
+
+            z-index: 2;
+
+        }
+
+
+
+        .star {
+
+            position: absolute;
+
+            width: 15px;
+
+            height: 15px;
+
+            background: radial-gradient(circle, #fff 20%, #ffcccb 60%);
+
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+
+            opacity: 0.9;
+
+            animation: drift 12s linear infinite;
+
+            box-shadow: 0 0 10px rgba(255, 204, 203, 0.8);
+
+        }
+
+
+
+        @keyframes drift {
+
+            0% {
+
+                transform: translate(0, 0) scale(0.8);
+
+                opacity: 0.9;
+
+            }
+
+
+
+            50% {
+
+                opacity: 0.5;
+
+            }
+
+
+
+            100% {
+
+                transform: translate(calc(var(--drift-x) * 50px), calc(var(--drift-y) * 100vh)) scale(1.2);
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+
+        .heart-container {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            pointer-events: none;
+
+            z-index: 3;
+
+        }
+
+
+
+        .heart {
+
+            position: absolute;
+
+            bottom: 0;
+
+            width: 30px;
+
+            height: 30px;
+
+            background: var(--primary);
+
+            transform: rotate(45deg);
+
+            animation: floatUp 4s ease-in-out forwards;
+
+            z-index: 3;
+
+            box-shadow: 0 0 12px rgba(255, 64, 96, 0.6);
+
+        }
+
+
+
+        .heart:before,
+
+        .heart:after {
+
+            content: '';
+
+            position: absolute;
+
+            width: 30px;
+
+            height: 30px;
+
+            background: var(--primary);
+
+            border-radius: 50%;
+
+        }
+
+
+
+        .heart:before {
+
+            top: -15px;
+
+            left: 0;
+
+        }
+
+
+
+        .heart:after {
+
+            left: -15px;
+
+            top: 0;
+
+        }
+
+
+
+        @keyframes floatUp {
+
+            0% {
+
+                transform: translateX(0) rotate(45deg) scale(0.5);
+
+                bottom: 10px;
+
+                opacity: 0;
+
+            }
+
+
+
+            10% {
+
+                opacity: 1;
+
+            }
+
+
+
+            90% {
+
+                opacity: 1;
+
+            }
+
+
+
+            100% {
+
+                transform: translateX(calc((var(--random) - 0.5) * 200px)) rotate(45deg) scale(1.2);
+
+                bottom: 100vh;
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+
+        .glass-card {
+
+            width: 90%;
+
+            max-width: 600px;
+
+            background: rgba(255, 245, 238, 0.3);
+
+            backdrop-filter: blur(12px);
+
+            border-radius: 20px;
+
+            padding: 2rem;
+
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+            border: 1px solid rgba(255, 245, 238, 0.4);
+
+            margin: 2.5rem auto;
+
+            position: relative;
+
+            z-index: 10;
+
+            animation: pulse 6s ease-in-out infinite;
+
+        }
+
+
+
+        @keyframes pulse {
+
+
+
+            0%,
+
+            100% {
+
+                transform: scale(1);
+
+            }
+
+
+
+            50% {
+
+                transform: scale(1.02);
+
+            }
+
+        }
+
+
+
+        h1 {
+
+            font-family: 'Kalam', cursive;
+
+            font-size: 2.5rem;
+
+            color: var(--accent);
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .hinglish-text {
+
+            font-family: 'Kalam', cursive;
+
+            font-size: 1.2rem;
+
+            color: var(--accent);
+
+            margin: 1rem 0;
+
+        }
+
+
+
+        .character-grid {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 1.5rem;
+
+            margin: 1.5rem auto;
+
+            max-width: 500px;
+
+        }
+
+
+
+        .character {
+
+            width: 100px;
+
+            height: 100px;
+
+            border-radius: 50%;
+
+            background-size: cover;
+
+            background-position: center;
+
+            border: 3px solid #fff;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+            transition: transform 0.8s ease, background 0.8s ease;
+
+            cursor: pointer;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+
+            color: transparent;
+
+            font-size: 0;
+
+            transform-style: preserve-3d;
+
+            text-align: center;
+
+            padding: 0.5rem;
+
+            backface-visibility: hidden;
+
+        }
+
+
+
+        .character:hover {
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        .character.spin {
+
+            animation: spinY 0.8s ease-out;
+
+        }
+
+
+
+        .character.show-text {
+
+            color: #ffffff;
+
+            font-size: 0.7rem;
+
+            text-shadow: 0 0 5px #7b7878;
+
+            background: rgba(184, 42, 42, 0.864) !important;
+
+        }
+
+
+
+        @keyframes spinY {
+
+            0% {
+
+                transform: rotateY(0deg);
+
+            }
+
+
+
+            50% {
+
+                transform: rotateY(180deg);
+
+            }
+
+
+
+            100% {
+
+                transform: rotateY(360deg);
+
+            }
+
+        }
+
+
+
+        .btn-group {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 1rem;
+
+            margin: 1.5rem 0;
+
+        }
+
+
+
+        .btn {
+
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+
+            color: #fff;
+
+            border: none;
+
+            padding: 0.8rem 1.5rem;
+
+            font-size: 0.9rem;
+
+            border-radius: 50px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 5px 15px rgba(255, 64, 96, 0.4);
+
+            font-weight: 600;
+
+        }
+
+
+
+        .btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 8px 25px rgba(255, 64, 96, 0.6);
+
+        }
+
+
+
+        .signature {
+
+            font-family: 'Kalam', cursive;
+
+            font-size: 1.3rem;
+
+            color: #a1106b;
+
+            margin-top: 1.5rem;
+
+            animation: fadeIn 1.5s ease-in;
+
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+            letter-spacing: 1px;
+
+        }
+
+
+
+        .dedication {
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 0.9rem;
+
+            font-weight: 600;
+
+            color: var(--accent);
+
+            margin-top: 0.5rem;
+
+            animation: fadeIn 2s ease-in;
+
+        }
+
+
+
+        @keyframes fadeIn {
+
+            0% {
+
+                opacity: 0;
+
+                transform: translateY(10px);
+
+            }
+
+
+
+            100% {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+
+        .cloud {
+
+            position: absolute;
+
+            top: -100px;
+
+            width: 100px;
+
+            height: 60px;
+
+            background: #fff;
+
+            border-radius: 50px;
+
+            opacity: 0.7;
+
+            animation: floatClouds 25s linear infinite;
+
+            z-index: 2;
+
+        }
+
+
+
+        .cloud::before,
+
+        .cloud::after {
+
+            content: "";
+
+            position: absolute;
+
+            background: #fff;
+
+            width: 60px;
+
+            height: 60px;
+
+            border-radius: 50%;
+
+            z-index: 2;
+
+        }
+
+
+
+        .cloud::before {
+
+            top: -25px;
+
+            left: 10px;
+
+        }
+
+
+
+        .cloud::after {
+
+            top: -15px;
+
+            left: 50px;
+
+        }
+
+
+
+        @keyframes floatClouds {
+
+            0% {
+
+                left: -150px;
+
+                top: 50px;
+
+            }
+
+
+
+            100% {
+
+                left: 110%;
+
+                top: 50px;
+
+            }
+
+        }
+
+
+
+        /* Music Player Styles */
+
+        .music-player {
+
+            position: fixed;
+
+            bottom: 20px;
+
+            right: 20px;
+
+            z-index: 100;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+
+        #musicToggle {
+
+            background: rgba(255, 255, 255, 0.2);
+
+            border: none;
+
+            color: white;
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(5px);
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 14px;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        #musicToggle:hover {
+
+            background: rgba(255, 255, 255, 0.3);
+
+        }
+
+
+
+        #volumeControl {
+
+            width: 80px;
+
+        }
+
+
+
+        @media (max-width: 600px) {
+
+            h1 {
+
+                font-size: 2rem;
+
+            }
+
+
+
+            .hinglish-text {
+
+                font-size: 1rem;
+
+            }
+
+
+
+            .character {
+
+                width: 80px;
+
+                height: 80px;
+
+            }
+
+
+
+            .btn {
+
+                padding: 0.6rem 1.2rem;
+
+                font-size: 0.8rem;
+
+            }
+
+
+
+            .signature {
+
+                font-size: 1.1rem;
+
+            }
+
+
+
+            .dedication {
+
+                font-size: 0.8rem;
+
+            }
+
+
+
+            .glass-card {
+
+                padding: 1.5rem;
+
+            }
+
+
+
+            .music-player {
+
+                bottom: 10px;
+
+                right: 10px;
+
+            }
+
+
+
+            #musicToggle {
+
+                padding: 6px 12px;
+
+                font-size: 12px;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body><!-- Music Player -->
+    <div class="music-player"><button id="musicToggle">🎵 Play Music</button>
+
+        <audio id="bgMusic" loop>
+
+            <source src="https://files.catbox.moe/tutz4q.mp3" type="audio/mpeg">
+
+        </audio>
+
+    </div>
+    <div class="background"></div>
+    <div class="star-container" id="starContainer"></div>
+    <div class="heart-container" id="heartContainer"></div>
+    <div class="glass-card">
+        <h1>Yaad Dila Raha Hoo</h1>
+
+        <div class="hinglish-text">Koi B Image Daba Kar Hidden Message Dekho 👀</div>
+
+
+
+        <div class="character-grid">
+
+            <div class="character" style="background-image: url('https://files.catbox.moe/et4j5r.jpg');"
+                data-text="Pata Nai Q Lekin Ya Sab Bana Kar Sakoon Q Mila"></div>
+
+            <div class="character" style="background-image: url('https://files.catbox.moe/0maen7.jpg');"
+                data-text="AP 1 Precious Dimaond Hain Allah Hifazat Kara Ap Ki"></div>
+
+            <div class="character" style="background-image: url('https://files.catbox.moe/8hw31h.jpg');"
+                data-text="Muje Pata Ha Ma Kabi Kabi Overthink Kar Jata ho Lekin Kia Karo">
+
+            </div>
+
+            <div class="character" style="background-image: url('https://files.catbox.moe/g0dfqq.jpg');"
+                data-text="Jaha Duniya Na Chod Dia Waha Ma Hoga Ap K Saath"></div>
+
+        </div>
+
+
+
+        <div class="btn-group">
+
+            <button class="btn" id="resetBtn">Muje Click Karo 👆 </button>
+
+            <button class="btn" id="spinAllBtn">Click Kar K Jadu Dekho 🦹‍♂️!</button>
+
+            <button class="btn" id="calmingModeBtn">White Theme Mode</button>
+
+        </div>
+
+
+
+        <div class="dedication">Just for you 💕</div>
+
+        <div class="signature">From Umar 💖</div>
+
+    </div>
+    <script>
+
+        // Music Player Functionality
+
+        const musicToggle = document.getElementById('musicToggle');
+
+        const bgMusic = document.getElementById('bgMusic');
+
+        let musicPlaying = false;
+
+
+
+        // Try to autoplay (may not work due to browser policies)
+
+        bgMusic.volume = 0.5;
+
+        const playPromise = bgMusic.play();
+
+
+
+        if (playPromise !== undefined) {
+
+            playPromise.then(() => {
+
+                musicPlaying = true;
+
+                musicToggle.textContent = "🔇 Pause Music";
+
+            })
+
+                .catch(error => {
+
+                    console.log("Autoplay prevented, waiting for user interaction");
+
+                });
+
+        }
+
+
+
+        musicToggle.addEventListener('click', () => {
+
+            if (musicPlaying) {
+
+                bgMusic.pause();
+
+                musicToggle.textContent = "🎵 Play Music";
+
+            } else {
+
+                bgMusic.play();
+
+                musicToggle.textContent = "🔇 Pause Music";
+
+            }
+
+            musicPlaying = !musicPlaying;
+
+        });
+
+
+
+        // Star Animation
+
+        function createStar() {
+
+            const star = document.createElement('div');
+
+            star.className = 'star';
+
+            star.style.left = Math.random() * window.innerWidth + 'px';
+
+            star.style.top = Math.random() * window.innerHeight + 'px';
+
+            star.style.setProperty('--drift-x', (Math.random() - 0.5) * 2);
+
+            star.style.setProperty('--drift-y', Math.random());
+
+            star.style.animationDuration = (10 + Math.random() * 5) + 's';
+
+            star.style.animationDelay = -(Math.random() * 15) + 's';
+
+            document.getElementById('starContainer').appendChild(star);
+
+            setTimeout(() => star.remove(), 15000);
+
+            return star;
+
+        }
+
+
+
+        function initStars(count = 10) {
+
+            for (let i = 0; i < count; i++) {
+
+                setTimeout(createStar, i * 1000);
+
+            }
+
+            setInterval(() => createStar(), 1000);
+
+        }
+
+
+
+        // Heart Animation
+
+        function createHeart() {
+
+            const heart = document.createElement('div');
+
+            heart.className = 'heart';
+
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+
+            heart.style.setProperty('--random', Math.random());
+
+            heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+
+            document.getElementById('heartContainer').appendChild(heart);
+
+            setTimeout(() => heart.remove(), 4000);
+
+        }
+
+
+
+        function burstHearts(count = 15) {
+
+            for (let i = 0; i < count; i++) {
+
+                setTimeout(createHeart, i * 200);
+
+            }
+
+        }
+
+
+
+        // Circle Click Functionality
+
+        function spinCircle(circle) {
+
+            const originalBG = circle.getAttribute('data-original-bg');
+
+            const isTextVisible = circle.classList.contains('show-text');
+
+            circle.classList.add('spin');
+
+
+
+            setTimeout(() => {
+
+                circle.classList.remove('spin');
+
+                if (isTextVisible) {
+
+                    circle.classList.remove('show-text');
+
+                    circle.textContent = '';
+
+                    circle.style.backgroundImage = originalBG;
+
+                } else {
+
+                    circle.classList.add('show-text');
+
+                    circle.textContent = circle.getAttribute('data-text');
+
+                    circle.style.backgroundImage = 'none';
+
+                    burstHearts();
+
+                }
+
+            }, 400);
+
+        }
+
+
+
+        function resetCircles() {
+
+            document.querySelectorAll('.character').forEach(char => {
+
+                char.classList.remove('show-text');
+
+                char.textContent = '';
+
+                char.style.backgroundImage = char.getAttribute('data-original-bg');
+
+            });
+
+        }
+
+
+
+        function spinAll() {
+
+            document.querySelectorAll('.character').forEach(char => {
+
+                spinCircle(char);
+
+            });
+
+        }
+
+
+
+        function activateCalmingMode() {
+
+            document.body.classList.add('calming-mode');
+
+            const clouds = [];
+
+            for (let i = 0; i < 5; i++) {
+
+                const cloud = document.createElement('div');
+
+                cloud.className = 'cloud';
+
+                cloud.style.top = 30 + i * 20 + 'px';
+
+                cloud.style.left = -200 * i + 'px';
+
+                document.body.appendChild(cloud);
+
+                clouds.push(cloud);
+
+            }
+
+            setTimeout(() => {
+
+                document.body.classList.remove('calming-mode');
+
+                clouds.forEach(cloud => cloud.remove());
+
+            }, 60000);
+
+        }
+
+
+
+        // Initialize
+
+        document.querySelectorAll('.character').forEach(char => {
+
+            char.setAttribute('data-original-bg', char.style.backgroundImage);
+
+            char.addEventListener('click', () => spinCircle(char));
+
+        });
+
+
+
+        document.getElementById('resetBtn').addEventListener('click', resetCircles);
+
+        document.getElementById('spinAllBtn').addEventListener('click', spinAll);
+
+        document.getElementById('calmingModeBtn').addEventListener('click', activateCalmingMode);
+
+
+
+        window.addEventListener('load', () => initStars());
+
+    </script>
+</body>
+
+</html>
